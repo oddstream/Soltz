@@ -54,7 +54,7 @@ const valueColors = new Map([
 ]);
 
 // https://stackoverflow.com/questions/20368071/touch-through-an-element-in-a-browser-like-pointer-events-none/20387287#20387287
-function dummyTouchStartHandler(/** @type {Event} */e) {e.preventDefault();}
+function dummyTouchHandler(/** @type {Event} */e) {e.preventDefault();}
 
 const Util = {
   /**
@@ -163,9 +163,6 @@ class AssociationTable {
 }
 
 const asstab = new AssociationTable();
-
-// https://stackoverflow.com/questions/20368071/touch-through-an-element-in-a-browser-like-pointer-events-none/20387287#20387287
-function dummyTouchStartHandler(/** @type {Event} */e) {e.preventDefault();}
 
 class Baize {
   constructor() {
@@ -281,7 +278,10 @@ class Baize {
     // http://www.open.ac.uk/blogs/brasherblog/?p=599
     // the ordinal and suit symbols use css pointer-event: none so the events pass through to their parent (the rect)
     this.ele.addEventListener('pointerdown', this.downHandler);
-    this.ele.addEventListener('touchstart', dummyTouchStartHandler);
+
+    this.ele.addEventListener('touchstart', dummyTouchHandler);
+    this.ele.addEventListener('touchmove', dummyTouchHandler);
+    this.ele.addEventListener('touchend', dummyTouchHandler);
   }
 
   /**
@@ -362,7 +362,7 @@ class Baize {
    * @param {PointerEvent} event 
    */
   onpointercancel(event) {
-    // console.log('cancel');
+    console.log('cancel');
   }
 
   /**
@@ -533,7 +533,9 @@ class Button {
     this.cancelHandler = this.onpointercancel.bind(this);
 
     this.g.addEventListener('pointerdown', this.downHandler);
-    this.g.addEventListener('touchstart', dummyTouchStartHandler);
+    this.g.addEventListener('touchstart', dummyTouchHandler);
+    this.g.addEventListener('touchmove', dummyTouchHandler);
+    this.g.addEventListener('touchend', dummyTouchHandler);
   }
 
   /**
@@ -581,7 +583,7 @@ class Button {
    * @param {PointerEvent} event 
    */
   onpointercancel(event) {
-    // console.log('cancel');
+    console.log('cancel');
   }
 
 }
@@ -638,7 +640,9 @@ class BigButton {
     this.cancelHandler = this.onpointercancel.bind(this);
 
     this.g.addEventListener('pointerdown', this.downHandler);
-    this.g.addEventListener('touchstart', dummyTouchStartHandler);
+    this.g.addEventListener('touchstart', dummyTouchHandler);
+    this.g.addEventListener('touchmove', dummyTouchHandler);
+    this.g.addEventListener('touchend', dummyTouchHandler);
   }
   /**
    * @param {PointerEvent} event 
@@ -675,7 +679,7 @@ class BigButton {
    * @param {PointerEvent} event 
    */
   onpointercancel(event) {
-    // console.log('cancel');
+    console.log('cancel');
   }
 }
 
