@@ -1,0 +1,6 @@
+{
+ "default_locale": "en",
+  "name": "Oddstream Soltz",
+  "author": "Oddstream",
+  "description": "2048 clone in vanilla Javascript and SVG"
+}
